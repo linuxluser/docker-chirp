@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  chirp:
+    image: local/chirp
+    environment:
+      USER_UID: 0
+      USER_GID: 0
+      DISPLAY: unix:0
+    
+    privileged: true
+
+    devices:
+      - /dev/bus/usb/001/011:/dev/ttyUSB0
+      - /dev/dri:/dev/dri
+    volumes:
+      - /home/$USER/.config/gqrx:/root/.config/gqrx
+      - /home/$USER/Documents:/tmp/Documents
+      - /dev/shm:/dev/shm
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro
+      - /run/user/1000/pulse:/run/pulse:ro
+      - /var/lib/dbus:/var/lib/dbus 
+      - /dev/snd:/dev/snd
+
