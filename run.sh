@@ -2,7 +2,7 @@
 
 
 NAME="chirp"
-VALID_DONGLES="067b:2303"  # Prolific Technology, Inc. PL2303 Serial Port
+VALID_DONGLES="067b:2303 1a86:7523"  # Prolific Technology, Inc. PL2303 Serial Port, QinHeng Electronics HL-340 USB-Serial adapter
 
 
 # Is a valid dongle attached?
@@ -36,6 +36,7 @@ docker build -t "local/${NAME}" $(realpath $(dirname $0))
 # Run
 docker run --rm -i -t \
        ${DEV_FLAG} \
+       --privileged \
        --device=/dev/dri:/dev/dri \
        --volume ${HOME}/.config/gqrx:/root/.config/gqrx \
        --volume /dev/shm:/dev/shm \
